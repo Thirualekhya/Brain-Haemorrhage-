@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroScan - AI Brain Hemorrhage Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                </svg>
+                <span>NeuroScan XAI</span>
+            </div>
+            <div class="status-badge"><span class="dot pulse"></span> System Online</div>
+        </header>
+
+        <main class="main-content">
+            <section class="upload-section">
+                <div class="glass-card upload-card" id="drop-zone">
+                    <input type="file" id="file-input" accept="image/*" hidden>
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                        </svg>
+                    </div>
+                    <h2>Upload CT Scan</h2>
+                    <p class="subtitle">Drag & drop a DICOM, JPEG, or PNG image here</p>
+                    <button class="btn-primary" id="browse-btn">Browse Files</button>
+                    <!-- Small instruction label for demo -->
+                    <p style="margin-top:20px; font-size:12px; opacity:0.6; pointer-events:none;">For demonstration purposes, upload any sample image.</p>
+                </div>
+
+                <div class="glass-card viewer-card hidden" id="viewer-container">
+                    <div class="canvas-wrapper">
+                        <canvas id="scan-canvas"></canvas>
+                        <div class="scanning-laser hidden" id="laser"></div>
+                    </div>
+                    <div class="controls">
+                        <button class="btn-secondary" id="reset-btn">Upload New Scan</button>
+                        <button class="btn-primary highlight" id="analyze-btn">Run AI Analysis</button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="results-section hidden" id="results-panel">
+                <div class="glass-card results-card">
+                    <h3>Diagnostic AI Report</h3>
+                    
+                    <div class="result-status" id="result-status">
+                        <div class="icon-circle loading">
+                            <span class="spinner"></span>
+                        </div>
+                        <span id="status-text">Analyzing neural tissue...</span>
+                    </div>
+
+                    <div class="metrics-grid hidden" id="metrics">
+                        <div class="metric-box alert-red" id="detection-box">
+                            <span class="metric-label">Detection</span>
+                            <span class="metric-value" id="val-detection">Positive</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-label">Estimated Volume</span>
+                            <span class="metric-value highlight-num"><span id="val-volume">0.0</span> <span class="unit">ml</span></span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-label">Confidence</span>
+                            <span class="metric-value"><span id="val-confidence">0</span> <span class="unit">%</span></span>
+                        </div>
+                    </div>
+
+                    <div class="xai-explanation hidden" id="xai-panel">
+                        <h4>Explainable AI (XAI) Activation</h4>
+                        <p>The highlighted region on the scan corresponds to the high-activation areas of the neural network indicating hemorrhage morphology.</p>
+                        <div class="legend">
+                            <span class="gradient-bar"></span>
+                            <div class="legend-labels"><span>Low Activation</span><span>High Activation</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>
